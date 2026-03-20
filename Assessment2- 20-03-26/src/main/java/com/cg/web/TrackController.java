@@ -63,7 +63,7 @@ public class TrackController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Object> getTrack( int id){
+	public ResponseEntity<Object> getTrack(@PathVariable("id")int id){
 		Optional<Track> to=tr.findById(id);
 		Object o;
 		if(to.isPresent())
