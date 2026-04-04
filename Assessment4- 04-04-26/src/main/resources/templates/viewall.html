@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View All Employees</title>
+   
+</head>
+<body>
+
+    <p  th:if="${errorMessage}" th:text="${errorMessage}"></p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Salary</th>
+                <th>DOJ</th>
+                <th>Dept</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="emp : ${employees}">
+                <td th:text="${emp.empId}"></td>
+                <td th:text="${emp.empName}"></td>
+                <td th:text="${emp.empSal}"></td>
+                <td th:text="${emp.empDoj}"></td>
+                <td th:text="${emp.deptName}"></td>
+                <td>
+					
+                    <a  th:href="@{/edit/{id}(id=${emp.empId})}">Edit</a>
+					   <a  th:href="@{/delete/{id}(id=${emp.empId})}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p th:if="${#lists.isEmpty(employees)}">No employees added.</p>
+
+</body>
+</html>

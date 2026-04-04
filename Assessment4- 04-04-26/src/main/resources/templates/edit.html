@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Employee</title>
+   
+</head>
+<body>
+
+   
+
+    <form th:action="@{/edit/{id}(id=${emp.empId})}" th:object="${emp}" method="post">
+
+        <input type="hidden" th:field="*{empId}" />
+
+        <div>
+            <div >
+                <label>ID</label>
+                <span class="id-value" th:text="${emp.empId}"></span>
+            </div>
+
+         
+            <div>
+                <label>Name</label>
+                <input type="text" th:field="*{empName}" />
+            </div>
+            <span th:if="${#fields.hasErrors('empName')}"
+                  th:errors="*{empName}"></span>
+
+           
+            <div>
+                <label>Salary</label>
+                <input type="number" step="0.1" th:field="*{empSal}" />
+            </div>
+            <span
+                  th:if="${#fields.hasErrors('empSal')}"
+                  th:errors="*{empSal}"></span>
+
+            <div >
+                <label>DOJ</label>
+                <input type="date" th:field="*{empDoj}" />
+            </div>
+            <span 
+                  th:if="${#fields.hasErrors('empDoj')}"
+                  th:errors="*{empDoj}"></span>
+
+            <div >
+                <label>Dept</label>
+                <select th:field="*{deptName}">
+                    <option value="">-- Select --</option>
+                    <option value="hr">hr</option>
+                    <option value="production">production</option>
+                </select>
+            </div>
+            <span 
+                  th:if="${#fields.hasErrors('deptName')}"
+                  th:errors="*{deptName}"></span>
+
+        </div>
+
+        <br/>
+        <button type="submit">Save</button>
+
+    </form>
+
+</body>
+</html>
